@@ -8,13 +8,14 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, FRPinDelegate {
 
     @IBOutlet weak var pin: FRPinView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        pin.delegate = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -27,7 +28,15 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - FRPin delegate
+    
+    func frPin(didFinishInput frPinView: FRPinView) {
+        print("Finish input")
+    }
 
+    // MARK: - Actions
+    
     @IBAction func doPrint(_ sender: UIButton) {
         print("PIN = \(pin.getText())")
     }

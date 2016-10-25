@@ -10,7 +10,7 @@ import UIKit
 
 protocol FRPinDelegate {
     
-    func didFinish(frPinView: FRPinView)
+    func frPin(didFinishInput frPinView: FRPinView)
     
 }
 
@@ -102,13 +102,18 @@ class FRPinView: UIView, UITextFieldDelegate {
     }
     
     func moveBackwardFrom(currentTextField textField: UITextField) {
-        for i in 0..<textFieldSize {
-            if textField == textFields[i] {
-                textFields[i-1].becomeFirstResponder()
-                
-                break
+        if hasBeenSelected {
+            for i in 0..<textFieldSize {
+                if textField == textFields[i] {
+                    textFields[i].text = ""
+                    textFields[i-1].becomeFirstResponder()
+                    
+                    break
+                }
             }
         }
+        
+        hasBeenSelected = true
     }
     
     func getText() -> String {
@@ -126,22 +131,24 @@ class FRPinView: UIView, UITextFieldDelegate {
     // MARK: - Textfield delegate1
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let  char = string.cString(using: String.Encoding.utf8)!
+        let char = string.cString(using: String.Encoding.utf8)!
         let isBackSpace = strcmp(char, "\\b")
         
         if let _ = textField.text {
             for i in 0..<textFieldSize {
+                // Backspace detected. Delete all PIN.
                 if (isBackSpace == -92) {
-                    if textField == textFields[i] {
-                        moveBackwardFrom(currentTextField: textFields[i])
-                    }
+                    textFields[i].text = ""
+                    textFields[0].becomeFirstResponder()
+                    
+                // Not backspace
                 } else {
                     // Last textfield
                     if (i == textFieldSize - 2) || (textField == textFields[textFieldSize - 2]) {
                         textFields[textFieldSize - 1].text = string
                         textField.resignFirstResponder()
                         
-                        delegate?.didFinish(frPinView: self)
+                        delegate?.frPin(didFinishInput: self)
                         
                         break
                     }
@@ -155,6 +162,12 @@ class FRPinView: UIView, UITextFieldDelegate {
                 }
             }
         }
+        
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        hasBeenSelected = false
         
         return true
     }
