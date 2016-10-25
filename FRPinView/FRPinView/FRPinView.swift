@@ -19,22 +19,22 @@ class FRPinView: UIView, UITextFieldDelegate {
     var delegate: FRPinDelegate?
     
     var pin: String = ""
-    var textFieldSize: Int = 0
     var textFields = [UITextField]()
     var hasBeenSelected = false
     
-    let pinSpacing: Int = 4
-    let pinWidth: Int = 44
-    let pinHeight: Int = 44
+    var pinCount: Int = 6
+    var pinSpacing: Int = 4
+    var pinWidth: Int = 36
+    var pinHeight: Int = 36
     var pinViewWidth: Int {
-        return (pinWidth * textFieldSize) + (pinSpacing * textFieldSize)
+        return (pinWidth * pinCount) + (pinSpacing * pinCount)
     }
     
     init(size: Int, frame: CGRect) {
         super.init(frame: frame)
         
         // Styling textfield
-        self.textFieldSize = size
+        self.pinCount = size
         
         createTextFields()
         addRoundedTextField()
@@ -42,9 +42,6 @@ class FRPinView: UIView, UITextFieldDelegate {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        // Styling textfield
-        self.textFieldSize = 6
         
         // Add text fields
         createTextFields()
@@ -55,7 +52,7 @@ class FRPinView: UIView, UITextFieldDelegate {
     
     func createTextFields() {
         // Create textfield based on size
-        for _ in 0..<self.textFieldSize {
+        for _ in 0..<self.pinCount {
             let textField = UITextField()
             
             // Set textfield params
@@ -77,7 +74,7 @@ class FRPinView: UIView, UITextFieldDelegate {
     func addRoundedTextField() {
         var nextX: Int = pinSpacing
         
-        for i in 0..<textFieldSize {
+        for i in 0..<pinCount {
             textFields[i].frame = CGRect(x: nextX,
                                          y: 10,
                                          width: pinWidth,
@@ -89,7 +86,7 @@ class FRPinView: UIView, UITextFieldDelegate {
     
     func moveFrom(currentTextField textField: UITextField) {
         if hasBeenSelected {
-            for i in 0..<textFieldSize {
+            for i in 0..<pinCount {
                 if textField == textFields[i] {
                     textFields[i+1].becomeFirstResponder()
                     
@@ -103,7 +100,7 @@ class FRPinView: UIView, UITextFieldDelegate {
     
     func moveBackwardFrom(currentTextField textField: UITextField) {
         if hasBeenSelected {
-            for i in 0..<textFieldSize {
+            for i in 0..<pinCount {
                 if textField == textFields[i] {
                     textFields[i].text = ""
                     textFields[i-1].becomeFirstResponder()
@@ -119,7 +116,7 @@ class FRPinView: UIView, UITextFieldDelegate {
     func getText() -> String {
         var results = ""
         
-        for i in 0..<textFieldSize {
+        for i in 0..<pinCount {
             if let text = textFields[i].text {
                 results = results + text
             }
@@ -135,7 +132,7 @@ class FRPinView: UIView, UITextFieldDelegate {
         let isBackSpace = strcmp(char, "\\b")
         
         if let _ = textField.text {
-            for i in 0..<textFieldSize {
+            for i in 0..<pinCount {
                 // Backspace detected. Delete all PIN.
                 if (isBackSpace == -92) {
                     textFields[i].text = ""
@@ -144,8 +141,8 @@ class FRPinView: UIView, UITextFieldDelegate {
                 // Not backspace
                 } else {
                     // Last textfield
-                    if (i == textFieldSize - 2) || (textField == textFields[textFieldSize - 2]) {
-                        textFields[textFieldSize - 1].text = string
+                    if (i == pinCount - 2) || (textField == textFields[pinCount - 2]) {
+                        textFields[pinCount - 1].text = string
                         textField.resignFirstResponder()
                         
                         delegate?.frPin(didFinishInput: self)
