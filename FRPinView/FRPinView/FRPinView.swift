@@ -10,6 +10,9 @@ import UIKit
 
 protocol FRPinDelegate {
     
+    /// User has been filled all the PIN delegate
+    ///
+    /// - Parameter frPinView: frPinView The PIN view
     func frPin(didFinishInput frPinView: FRPinView)
     
 }
@@ -22,10 +25,10 @@ class FRPinView: UIView, UITextFieldDelegate {
     var textFields = [UITextField]()
     var hasBeenSelected = false
     
-    var pinCount: Int = 6
-    var pinSpacing: Int = 4
-    var pinWidth: Int = 36
-    var pinHeight: Int = 36
+    @IBInspectable var pinCount: Int = 6
+    @IBInspectable var pinSpacing: Int = 4
+    @IBInspectable var pinWidth: Int = 36
+    @IBInspectable var pinHeight: Int = 36
     var pinViewWidth: Int {
         return (pinWidth * pinCount) + (pinSpacing * pinCount)
     }
@@ -42,8 +45,11 @@ class FRPinView: UIView, UITextFieldDelegate {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        // Add text fields
+    }
+    
+    override func layoutSubviews() {
+        // Add textfields
+        textFields = [UITextField]()
         createTextFields()
         addRoundedTextField()
     }
