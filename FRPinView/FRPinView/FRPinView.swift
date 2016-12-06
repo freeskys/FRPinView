@@ -17,7 +17,7 @@ protocol FRPinDelegate {
     
 }
 
-class FRPinView: UIView, UITextFieldDelegate {
+class FRPinView: UIView {
 
     var delegate: FRPinDelegate?
     
@@ -50,6 +50,7 @@ class FRPinView: UIView, UITextFieldDelegate {
     override func layoutSubviews() {
         // Add textfields
         textFields = [UITextField]()
+        
         createTextFields()
         addRoundedTextField()
     }
@@ -73,6 +74,10 @@ class FRPinView: UIView, UITextFieldDelegate {
             textField.layer.borderWidth = 1
             textField.layer.borderColor = UIColor(red: 0.91, green: 0.91, blue: 0.91, alpha: 1.00).cgColor
             
+            textField.addTarget(self,
+                                action: #selector(FRPinView.textFieldDidChange),
+                                for: .editingChanged)
+            
             textFields.append(textField)
         }
     }
@@ -91,7 +96,7 @@ class FRPinView: UIView, UITextFieldDelegate {
     }
     
     func moveFrom(currentTextField textField: UITextField) {
-        if hasBeenSelected {
+//        if hasBeenSelected {
             for i in 0..<pinCount {
                 if textField == textFields[i] {
                     textFields[i+1].becomeFirstResponder()
@@ -99,7 +104,7 @@ class FRPinView: UIView, UITextFieldDelegate {
                     break
                 }
             }
-        }
+//        }
         
         hasBeenSelected = true
     }
@@ -119,6 +124,9 @@ class FRPinView: UIView, UITextFieldDelegate {
         hasBeenSelected = true
     }
     
+    /// Get text from all pin textfields
+    ///
+    /// - Returns: return String Text from all pin textfields
     func getText() -> String {
         var results = ""
         
@@ -131,48 +139,10 @@ class FRPinView: UIView, UITextFieldDelegate {
         return results
     }
     
-    // MARK: - Textfield delegate1
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let char = string.cString(using: String.Encoding.utf8)!
-        let isBackSpace = strcmp(char, "\\b")
-        
-        if let _ = textField.text {
-            for i in 0..<pinCount {
-                // Backspace detected. Delete all PIN.
-                if (isBackSpace == -92) {
-                    textFields[i].text = ""
-                    textFields[0].becomeFirstResponder()
-                    
-                // Not backspace
-                } else {
-                    // Last textfield
-                    if (i == pinCount - 2) || (textField == textFields[pinCount - 2]) {
-                        textFields[pinCount - 1].text = string
-                        textField.resignFirstResponder()
-                        
-                        delegate?.frPin(didFinishInput: self)
-                        
-                        break
-                    }
-                    
-                    // Move to next field
-                    if textField == textFields[i] {
-                        moveFrom(currentTextField: textFields[i])
-                        
-                        break
-                    }
-                }
-            }
+    func resetText() {
+        for i in 0..<pinCount {
+            textFields[i].text = ""
         }
-        
-        return true
-    }
-    
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        hasBeenSelected = false
-        
-        return true
     }
     
     /*

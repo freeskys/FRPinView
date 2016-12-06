@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6248B1A31DF69EA400D8FF29 /* FRPinView-TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6248B1A21DF69EA400D8FF29 /* FRPinView-TextField.swift */; };
 		62B666581DBE10B000E6C3DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B666571DBE10B000E6C3DE /* AppDelegate.swift */; };
 		62B6665A1DBE10B000E6C3DE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B666591DBE10B000E6C3DE /* ViewController.swift */; };
 		62B6665D1DBE10B000E6C3DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B6665B1DBE10B000E6C3DE /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6248B1A21DF69EA400D8FF29 /* FRPinView-TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FRPinView-TextField.swift"; path = "FRPinView/FRPinView-TextField.swift"; sourceTree = "<group>"; };
 		62B666541DBE10B000E6C3DE /* FRPinView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FRPinView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B666571DBE10B000E6C3DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62B666591DBE10B000E6C3DE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				62B666861DBE10EF00E6C3DE /* FRPinView.swift */,
+				6248B1A21DF69EA400D8FF29 /* FRPinView-TextField.swift */,
 			);
 			name = FRPinView;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6248B1A31DF69EA400D8FF29 /* FRPinView-TextField.swift in Sources */,
 				62B6665A1DBE10B000E6C3DE /* ViewController.swift in Sources */,
 				62B666581DBE10B000E6C3DE /* AppDelegate.swift in Sources */,
 				62B666871DBE10EF00E6C3DE /* FRPinView.swift in Sources */,
