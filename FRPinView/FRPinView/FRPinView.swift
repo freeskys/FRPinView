@@ -76,9 +76,7 @@ class FRPinView: UIView {
             textField.layer.borderWidth = self.pinBorderWidth
             textField.layer.borderColor = UIColor(red: 0.91, green: 0.91, blue: 0.91, alpha: 1.00).cgColor
             
-            textField.addTarget(self,
-                                action: #selector(FRPinView.textFieldDidChange),
-                                for: [UIControlEvents.editingChanged, UIControlEvents.valueChanged])
+            textField.addTarget(self, action: #selector(FRPinView.textFieldDidChange), for: UIControlEvents.editingChanged)
             
             textFields.append(textField)
         }
@@ -98,32 +96,24 @@ class FRPinView: UIView {
     }
     
     func moveFrom(currentTextField textField: UITextField) {
-//        if hasBeenSelected {
-            for i in 0..<pinCount {
-                if textField == textFields[i] {
-                    textFields[i+1].becomeFirstResponder()
-                    
-                    break
-                }
+        for i in 0..<pinCount {
+            if textField == textFields[i] {
+                textFields[i+1].becomeFirstResponder()
+                
+                break
             }
-//        }
-        
-        hasBeenSelected = true
+        }
     }
     
     func moveBackwardFrom(currentTextField textField: UITextField) {
-//        if hasBeenSelected {
-            for i in 0..<pinCount {
-                if textField == textFields[i] {
-                    textFields[i].text = ""
-                    textFields[i-1].becomeFirstResponder()
-                    
-                    break
-                }
+        for i in 0..<pinCount {
+            if textField == textFields[i] {
+                textFields[i].text = ""
+                textFields[i-1].becomeFirstResponder()
+                
+                break
             }
-//        }
-        
-        hasBeenSelected = true
+        }
     }
     
     /// Get text from all pin textfields
