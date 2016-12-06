@@ -13,6 +13,7 @@ extension FRPinView: UITextFieldDelegate {
     
     // MARK: - Textfield delegate
 //    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        print("RENE RENE RENE")
 //        let char = string.cString(using: String.Encoding.utf8)!
 //        let isBackSpace = strcmp(char, "\\b")
 

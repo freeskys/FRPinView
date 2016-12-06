@@ -29,6 +29,8 @@ class FRPinView: UIView {
     @IBInspectable var pinSpacing: Int = 4
     @IBInspectable var pinWidth: Int = 36
     @IBInspectable var pinHeight: Int = 36
+    @IBInspectable var pinCornerRadius: CGFloat = 5
+    @IBInspectable var pinBorderWidth: CGFloat = 1
     var pinViewWidth: Int {
         return (pinWidth * pinCount) + (pinSpacing * pinCount)
     }
@@ -70,13 +72,13 @@ class FRPinView: UIView {
             textField.isSecureTextEntry = true
             
             // Styling textfield
-            textField.layer.cornerRadius = 10
-            textField.layer.borderWidth = 1
+            textField.layer.cornerRadius = self.pinCornerRadius
+            textField.layer.borderWidth = self.pinBorderWidth
             textField.layer.borderColor = UIColor(red: 0.91, green: 0.91, blue: 0.91, alpha: 1.00).cgColor
             
             textField.addTarget(self,
                                 action: #selector(FRPinView.textFieldDidChange),
-                                for: .editingChanged)
+                                for: [UIControlEvents.editingChanged, UIControlEvents.valueChanged])
             
             textFields.append(textField)
         }
@@ -110,7 +112,7 @@ class FRPinView: UIView {
     }
     
     func moveBackwardFrom(currentTextField textField: UITextField) {
-        if hasBeenSelected {
+//        if hasBeenSelected {
             for i in 0..<pinCount {
                 if textField == textFields[i] {
                     textFields[i].text = ""
@@ -119,7 +121,7 @@ class FRPinView: UIView {
                     break
                 }
             }
-        }
+//        }
         
         hasBeenSelected = true
     }
