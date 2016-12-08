@@ -68,6 +68,7 @@ class FRPinView: UIView {
             textField.keyboardType = .numberPad
             textField.textAlignment = .center
             textField.backgroundColor = UIColor.white
+            textField.tintColor = textField.backgroundColor
             textField.delegate = self
             textField.isSecureTextEntry = true
             
@@ -76,7 +77,7 @@ class FRPinView: UIView {
             textField.layer.borderWidth = self.pinBorderWidth
             textField.layer.borderColor = UIColor(red: 0.91, green: 0.91, blue: 0.91, alpha: 1.00).cgColor
             
-            textField.addTarget(self, action: #selector(FRPinView.textFieldDidChange), for: UIControlEvents.editingChanged)
+//            textField.addTarget(self, action: #selector(FRPinView.textFieldDidChange), for: UIControlEvents.editingChanged)
             
             textFields.append(textField)
         }
@@ -131,10 +132,16 @@ class FRPinView: UIView {
         return results
     }
     
+    /// Reset text values
     func resetText() {
         for i in 0..<pinCount {
             textFields[i].text = ""
         }
+    }
+    
+    /// Make the first textfield become first responder
+    func focus() {
+        textFields[0].becomeFirstResponder()
     }
     
     /*

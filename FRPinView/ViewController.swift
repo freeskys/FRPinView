@@ -22,6 +22,7 @@ class ViewController: UIViewController, FRPinDelegate {
         pin.frame = CGRect(origin: pin.frame.origin,
                            size: CGSize(width: CGFloat(pin.pinViewWidth) + 8,
                                         height: pin.frame.size.height))
+        pin.focus()
     }
 
     override func didReceiveMemoryWarning() {
