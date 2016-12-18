@@ -1,4 +1,8 @@
 # FRPinView
+
+[![Code Climate](https://codeclimate.com/github/freeskys/FRPinView/badges/gpa.svg)](https://codeclimate.com/github/freeskys/FRPinView)
+[![Test Coverage](https://codeclimate.com/github/freeskys/FRPinView/badges/coverage.svg)](https://codeclimate.com/github/freeskys/FRPinView/coverage)
+
 PinView extends from UIView to provide PIN input
 
 ## Usage
