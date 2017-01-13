@@ -16,6 +16,7 @@
 		62B6666D1DBE10B000E6C3DE /* FRPinViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B6666C1DBE10B000E6C3DE /* FRPinViewTests.swift */; };
 		62B666781DBE10B000E6C3DE /* FRPinViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B666771DBE10B000E6C3DE /* FRPinViewUITests.swift */; };
 		62B666871DBE10EF00E6C3DE /* FRPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B666861DBE10EF00E6C3DE /* FRPinView.swift */; };
+		62FFC4A11E2602DC00AAC2A7 /* FRPinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62FFC4A01E2602DC00AAC2A7 /* FRPinViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		62B666771DBE10B000E6C3DE /* FRPinViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRPinViewUITests.swift; sourceTree = "<group>"; };
 		62B666791DBE10B000E6C3DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62B666861DBE10EF00E6C3DE /* FRPinView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FRPinView.swift; path = FRPinView/FRPinView.swift; sourceTree = "<group>"; };
+		62FFC4A01E2602DC00AAC2A7 /* FRPinViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FRPinViewController.swift; path = FRPinView/FRPinViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 		62B666851DBE10DE00E6C3DE /* FRPinView */ = {
 			isa = PBXGroup;
 			children = (
+				62FFC4A01E2602DC00AAC2A7 /* FRPinViewController.swift */,
 				62B666861DBE10EF00E6C3DE /* FRPinView.swift */,
 				6248B1A21DF69EA400D8FF29 /* FRPinView-TextField.swift */,
 			);
@@ -276,6 +279,7 @@
 				6248B1A31DF69EA400D8FF29 /* FRPinView-TextField.swift in Sources */,
 				62B6665A1DBE10B000E6C3DE /* ViewController.swift in Sources */,
 				62B666581DBE10B000E6C3DE /* AppDelegate.swift in Sources */,
+				62FFC4A11E2602DC00AAC2A7 /* FRPinViewController.swift in Sources */,
 				62B666871DBE10EF00E6C3DE /* FRPinView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

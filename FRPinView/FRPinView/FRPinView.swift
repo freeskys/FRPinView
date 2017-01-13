@@ -19,21 +19,23 @@ protocol FRPinDelegate {
 
 class FRPinView: UIView {
 
+    // Variables
     var delegate: FRPinDelegate?
-    
     var pin: String = ""
+    var tempPin: String = ""
     var textFields = [UITextField]()
-    var hasBeenSelected = false
+//    var hasBeenSelected = false
+    var pinViewWidth: Int {
+        return (pinWidth * pinCount) + (pinSpacing * pinCount)
+    }
     
+    // Outlets
     @IBInspectable var pinCount: Int = 6
     @IBInspectable var pinSpacing: Int = 4
     @IBInspectable var pinWidth: Int = 36
     @IBInspectable var pinHeight: Int = 36
     @IBInspectable var pinCornerRadius: CGFloat = 5
     @IBInspectable var pinBorderWidth: CGFloat = 1
-    var pinViewWidth: Int {
-        return (pinWidth * pinCount) + (pinSpacing * pinCount)
-    }
     
     init(size: Int, frame: CGRect) {
         super.init(frame: frame)
@@ -41,8 +43,7 @@ class FRPinView: UIView {
         // Styling textfield
         self.pinCount = size
         
-        createTextFields()
-        addRoundedTextField()
+       self.renderTextFields()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -53,12 +54,17 @@ class FRPinView: UIView {
         // Add textfields
         textFields = [UITextField]()
         
-        createTextFields()
-        addRoundedTextField()
+        self.renderTextFields()
     }
     
     // MARK: - Functions
     
+    func renderTextFields() {
+        self.createTextFields()
+        self.addRoundedTextField()
+    }
+    
+    /// Generate textfield
     func createTextFields() {
         // Create textfield based on size
         for _ in 0..<self.pinCount {
@@ -83,6 +89,7 @@ class FRPinView: UIView {
         }
     }
     
+    /// Make textfield rounded
     func addRoundedTextField() {
         var nextX: Int = pinSpacing
         
@@ -96,6 +103,9 @@ class FRPinView: UIView {
         }
     }
     
+    /// Move forward to textfield
+    ///
+    /// - Parameter textField: textField Current textfield
     func moveFrom(currentTextField textField: UITextField) {
         for i in 0..<pinCount {
             if textField == textFields[i] {
@@ -106,6 +116,9 @@ class FRPinView: UIView {
         }
     }
     
+    /// Move backward from textfield
+    ///
+    /// - Parameter textField: textField Current textfield
     func moveBackwardFrom(currentTextField textField: UITextField) {
         for i in 0..<pinCount {
             if textField == textFields[i] {
