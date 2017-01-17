@@ -24,7 +24,6 @@ class FRPinView: UIView {
     var pin: String = ""
     var tempPin: String = ""
     var textFields = [UITextField]()
-//    var hasBeenSelected = false
     var pinViewWidth: Int {
         return (pinWidth * pinCount) + (pinSpacing * pinCount)
     }
@@ -67,7 +66,7 @@ class FRPinView: UIView {
     /// Generate textfield
     func createTextFields() {
         // Create textfield based on size
-        for _ in 0..<self.pinCount {
+        for i in 0..<self.pinCount {
             let textField = UITextField()
             
             // Set textfield params
@@ -83,7 +82,9 @@ class FRPinView: UIView {
             textField.layer.borderWidth = self.pinBorderWidth
             textField.layer.borderColor = UIColor(red: 0.91, green: 0.91, blue: 0.91, alpha: 1.00).cgColor
             
-//            textField.addTarget(self, action: #selector(FRPinView.textFieldDidChange), for: UIControlEvents.editingChanged)
+            if i > 0 {
+                textField.isUserInteractionEnabled = false
+            }
             
             textFields.append(textField)
         }
