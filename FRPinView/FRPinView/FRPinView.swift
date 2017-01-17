@@ -135,15 +135,15 @@ class FRPinView: UIView {
     ///
     /// - Returns: return String Text from all pin textfields
     func getText() -> String {
-        var results = ""
+//        var results = ""
+//        
+//        for i in 0..<pinCount {
+//            if let text = textFields[i].text {
+//                results = results + text
+//            }
+//        }
         
-        for i in 0..<pinCount {
-            if let text = textFields[i].text {
-                results = results + text
-            }
-        }
-        
-        return results
+        return pin
     }
     
     /// Reset text values

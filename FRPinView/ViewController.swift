@@ -37,6 +37,7 @@ class ViewController: UIViewController, FRPinDelegate {
     
     func frPin(didFinishInput frPinView: FRPinView) {
         print("Finish input")
+        print("PIN: \(frPinView.getText())")
     }
 
     // MARK: - Actions
