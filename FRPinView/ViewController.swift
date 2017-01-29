@@ -39,6 +39,10 @@ class ViewController: UIViewController, FRPinDelegate {
         print("Finish input")
         print("PIN: \(frPinView.getText())")
     }
+    
+    func frPin(didDeletePin frPinView: FRPinView) {
+        print("Delete input")
+    }
 
     // MARK: - Actions
     

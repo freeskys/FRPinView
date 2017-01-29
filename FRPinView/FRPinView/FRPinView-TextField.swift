@@ -22,6 +22,8 @@ extension FRPinView: UITextFieldDelegate {
             tempPin = ""
             
             resetText()
+            
+            delegate?.frPin?(didDeletePin: self)
         } else {
             pin += string
             tempPin += string + ","

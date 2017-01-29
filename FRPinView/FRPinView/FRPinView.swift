@@ -8,12 +8,18 @@
 
 import UIKit
 
+@objc
 protocol FRPinDelegate {
     
     /// User has been filled all the PIN delegate
     ///
     /// - Parameter frPinView: frPinView The PIN view
     func frPin(didFinishInput frPinView: FRPinView)
+    
+    /// User delete PIN value
+    ///
+    /// - Parameter frPinView: frPinView The PIN view
+    @objc optional func frPin(didDeletePin frPinView: FRPinView)
     
 }
 
@@ -24,6 +30,7 @@ class FRPinView: UIView {
     var pin: String = ""
     var tempPin: String = ""
     var textFields = [UITextField]()
+    var keyboardType: UIKeyboardType = .numberPad
     var pinViewWidth: Int {
         return (pinWidth * pinCount) + (pinSpacing * pinCount)
     }
@@ -70,7 +77,7 @@ class FRPinView: UIView {
             let textField = UITextField()
             
             // Set textfield params
-            textField.keyboardType = .numberPad
+            textField.keyboardType = keyboardType
             textField.textAlignment = .center
             textField.backgroundColor = UIColor.white
             textField.tintColor = textField.backgroundColor
@@ -135,14 +142,6 @@ class FRPinView: UIView {
     ///
     /// - Returns: return String Text from all pin textfields
     func getText() -> String {
-//        var results = ""
-//        
-//        for i in 0..<pinCount {
-//            if let text = textFields[i].text {
-//                results = results + text
-//            }
-//        }
-        
         return pin
     }
     
